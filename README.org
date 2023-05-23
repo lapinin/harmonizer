@@ -1,2 +1,4 @@
-# harmonizer
-~/
+## :harmonizer
+computer.
+TODO: 
+- Add stuff idk.
