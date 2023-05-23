@@ -1,4 +1,5 @@
-## :harmonizer
+#+TITLE: :harmonizer
 computer.
+
 TODO: 
 - Add stuff idk.
