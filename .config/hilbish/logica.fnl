@@ -1,4 +1,5 @@
 (import-macros {: aliases!
+                : envars!
                 : paths!} :macros)
 
 (local promptua (require :promptua))
@@ -6,7 +7,7 @@
 (promptua.setTheme "logic")
 (promptua.init)
 
-(os.setenv "EDITOR" "emacs")
+(envars! [ {:name "EDITOR" :value "emacs"} ])
 
 (paths! [ {:dir "~/.local/bin/"}
           {:dir "~/.cargo/bin/"}
