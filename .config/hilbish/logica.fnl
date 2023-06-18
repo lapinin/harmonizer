@@ -1,11 +1,20 @@
+;;;; harmonizer.fnl
+
+;; * 
+
 (import-macros {: aliases!
                 : envars!
-                : paths!} :macros)
+                : paths!
+                : module!
+                : sh!} :macros)
 
-(local promptua (require :promptua))
+(module! (b :bait)
+         (c :commander)
+         (f :fennel)
+         (p :promptua))
 
-(promptua.setTheme "logic")
-(promptua.init)
+(p.setTheme "logic")
+(p.init)
 
 (envars! [ {:name "EDITOR" :value "emacs"} ])
 

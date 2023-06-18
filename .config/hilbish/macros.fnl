@@ -7,23 +7,40 @@
       (tset out idx (func value)))
     out))
 
-{:aliases! (fn [...]
-             "Improved hilbish.alias handling"
-             (let [aliases ...]
-               (map (fn [alias]
-                      `(hilbish.alias ,alias.cmd ,alias.orig))
-                    aliases)))
+(lambda aliases! [...]
+  "Improved hilbish.alias handling"
+  (let [aliases ...]
+    (map (fn [alias]
+           `(hilbish.alias ,alias.cmd ,alias.orig))
+         aliases)))
 
- :envars! (fn [...]
-            "Improved os.setenv handling"
-            (let [envars ...]
-              (map (fn [env]
-                     `(os.setenv ,env.name ,env.value))
-                   envars)))
+(lambda envars! [...]
+  "Improved os.setenv handling"
+  (let [envars ...]
+    (map (fn [env]
+           `(os.setenv ,env.name ,env.value))
+         envars)))
 
- :paths! (fn [...]
-           "Improved hilbish.appendPath handling"
-           (let [paths ...]
-             (map (fn [path]
-                    `(hilbish.appendPath ,path.dir))
-                  paths)))}
+(lambda paths! [...]
+  "Improved hilbish.appendPath handling"
+  (let [paths ...]
+    (map (fn [path]
+           `(hilbish.appendPath ,path.dir))
+         paths)))
+
+(lambda module! [...]
+  (var ret {})
+  (for [i 1 (length [...])]
+    (if (list? (. [...] i))
+        (table.insert ret `(local ,(. (. [...] i) 1) (require ,(. (. [...] i) 2))))
+        (table.insert ret `(require ,(. [...] i)))))
+  ret)
+
+(lambda sh! [str]
+  `(hilbish.run ,str))
+
+{: aliases!
+ : envars!
+ : paths!
+ : module!
+ : sh! }
