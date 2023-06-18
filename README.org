@@ -1,7 +1,8 @@
 #+TITLE: :harmonizer
-computer.
 
-TODO: 
-- Add stuff idk.
-- Personal Website.
-- Get back on track.
+* What is this?
+Config files for my Linux setup.
+
+I seriously *don't* recommend using these. 
+
+Is mostly experimental and very unstable/incomplete.
