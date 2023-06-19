@@ -21,13 +21,6 @@
            `(os.setenv ,env.name ,env.value))
          envars)))
 
-(lambda paths! [...]
-  "Improved hilbish.appendPath handling"
-  (let [paths ...]
-    (map (fn [path]
-           `(hilbish.appendPath ,path.dir))
-         paths)))
-
 (lambda module! [...]
   (var ret {})
   (for [i 1 (length [...])]
@@ -36,11 +29,18 @@
         (table.insert ret `(require ,(. [...] i)))))
   ret)
 
+(lambda paths! [...]
+  "Improved hilbish.appendPath handling"
+  (let [paths ...]
+    (map (fn [path]
+           `(hilbish.appendPath ,path.dir))
+         paths)))
+
 (lambda sh! [str]
   `(hilbish.run ,str))
 
 {: aliases!
  : envars!
- : paths!
  : module!
- : sh! }
+ : paths!
+ : sh!}
