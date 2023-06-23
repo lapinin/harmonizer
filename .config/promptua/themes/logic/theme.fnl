@@ -1,9 +1,9 @@
 (local promptua (require :promptua))
 (local git (require :promptua.providers.git))
 
-(local conf {:prompt {:icon ":"
-                      :success ""
-                      :fail ""}})	
+(local conf {:prompt {:icon ":harmonizer"
+                      :success "stable"
+                      :fail "error!"}})
 (promptua.setConfig conf) 
 
 (fn git-branch [segment]
@@ -25,4 +25,4 @@
  {:provider :prompt.icon
   :style "white"}
  {:provider :prompt.failSuccess
-  :style "bold"}] 
+  :style "bold"}]
