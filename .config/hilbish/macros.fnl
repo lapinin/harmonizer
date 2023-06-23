@@ -1,27 +1,29 @@
 ;;;; macros.fnl
 
-(fn map [func col]
-  "Maps a function over a collection."
+(fn map [func coll]
+  {:fnl/docstring "Maps a function over a collection."
+   :fnl/arglist [func coll]}
   (let [out {}]
-    (each [idx value (ipairs col)]
+    (each [idx value (ipairs coll)]
       (tset out idx (func value)))
     out))
 
 (lambda aliases! [...]
-  "Improved hilbish.alias handling"
+  "Macro for hilbish.alias handling"
   (let [aliases ...]
     (map (fn [alias]
            `(hilbish.alias ,alias.cmd ,alias.orig))
          aliases)))
 
 (lambda envars! [...]
-  "Improved os.setenv handling"
+  "Macro for os.setenv handling"
   (let [envars ...]
     (map (fn [env]
            `(os.setenv ,env.name ,env.value))
          envars)))
 
 (lambda module! [...]
+  "Shortcut macro for modules handling"
   (var ret {})
   (for [i 1 (length [...])]
     (if (list? (. [...] i))
@@ -30,13 +32,14 @@
   ret)
 
 (lambda paths! [...]
-  "Improved hilbish.appendPath handling"
+  "Macro for hilbish.appendPath handling"
   (let [paths ...]
     (map (fn [path]
            `(hilbish.appendPath ,path.dir))
          paths)))
 
 (lambda sh! [str]
+  "Macro for hilbish.run handling"
   `(hilbish.run ,str))
 
 {: aliases!

@@ -1,7 +1,5 @@
 ;;;; logica.fnl
 
-;; * 
-
 (import-macros {: aliases!
                 : envars!
                 : module!
@@ -18,10 +16,11 @@
 (paths! [ {:dir "~/.local/bin/"}
           {:dir "~/.cargo/bin/"}
           {:dir "~/.cabal/bin/"}
-          {:dir "~/.ghcup/bin/"} ])
+          {:dir "~/.ghcup/bin/"} ]) 
 
 (aliases! [ {:cmd ":cls"  :orig "clear"}
             {:cmd ":dni"  :orig "sudo dnf install -y"}
+            {:cmd ":dnu"  :orig "sudo dnf remove -y"}
             {:cmd ":dnu"  :orig "sudo dnf update -y"}
             {:cmd ":fnl"  :orig "fennel --compile"}
             {:cmd ":fnlc" :orig "check.fnl -c ~/.local/bin/check-opts.fnl"} 
@@ -38,7 +37,7 @@
   (p.setTheme theme)
   (p.init))
 
-(promptua-theme "logic") ;; "show", "mini".
+(promptua-theme "logic")
 
 ;; ?
 ;; (hilbish.runnerMode (fn [input]
