@@ -7,5 +7,5 @@
     (io.write (.. "\027[4" color "m    ")))
   (io.write "\027[0m\n"))
 
-(io.flush)
+(io.flush) 
 (print "") 
