@@ -1,8 +1,6 @@
-#+TITLE: :harmonizer
+# :harmonizer
 
-* What is this?
+## What is this?
 Config files for my Linux setup.
-
 I seriously *don't* recommend using these. 
-
 Is mostly experimental and very unstable/incomplete.
