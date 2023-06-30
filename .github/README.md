@@ -1,6 +1,7 @@
 # :harmonizer
 
-## What is this?
-Config files for my Linux setup.
-I seriously *don't* recommend using these. 
-Is mostly experimental and very unstable/incomplete.
+wip ig.
+
+### Dependencies
+- [lume](https://github.com/rxi/lume/)
+- [fennel](https://sr.ht/~technomancy/fennel/)
