@@ -38,13 +38,15 @@
 ;; Don't load any other files besides this config
 (setq inhibit-default-init t)
 
+(require 'popn-pkg)
+
 ;; Define directories
 (eval-and-compile
   (defvar home-directory (getenv "HOME")
     "User $HOME.")
 
   (defvar popn-root (file-truename user-emacs-directory)
-    "Root of the popn.")
+    "Root of popn.")
 
   (defvar popn-dir (concat popn-root "popn/")
     "The main directory of popn's configuration."))
@@ -52,7 +54,7 @@
 ;; Add configuration directories to `load-path'
 (defun update-load-path (&rest _)
   "Update `load-path'."
-  (dolist (dir '("popn" "gachapon" "pochiko"))
+  (dolist (dir '("popn" "gachapon"))
     (cl-pushnew (expand-file-name dir popn-root) load-path)))
 
 (update-load-path)
@@ -78,4 +80,3 @@
 ;; End:
 
 ;;; popn.el ends here.
-

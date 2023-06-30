@@ -24,7 +24,7 @@
 ;; Set tab length.
 (setq tab-stop-list (number-sequence 2 120 2))
 
-;; Allow commands.
+;; Allow commands (by disabling 'em).
 (put 'narrow-to-region 'disabled nil)
 (put 'narrow-to-page 'disabled nil)
 (put 'upcase-region 'disabled nil)
@@ -83,6 +83,11 @@
         inhibit-compacting-font-caches t
         gc-cons-percentage 0.1))
 
+(leaf server
+  :hook (elpaca-after-init . server-mode)
+  :config
+  (add-hook 'server-done-hook 'recentf-cleanup))
+
 (leaf delsel
   :require t
   :init (delete-selection-mode))
@@ -122,7 +127,7 @@
         kept-new-versions 6
         kept-old-versions 2
         version-control t
-        auto-save-default nil
+        auto-save-default t
         auto-save-list-file-prefix nil
         large-file-warning-threshold nil
         require-final-newline t
@@ -182,7 +187,7 @@
         inhibit-startup-echo-area-message t
         initial-scratch-message nil
         initial-buffer-choice nil
-        frame-title-format nil
+        frame-title-format "E"
         use-dialog-box nil
         pop-up-windows nil
         cursor-in-non-selected-windows nil
@@ -205,9 +210,9 @@
         mode-line-default-help-echo nil)
   (setq-default tab-width popn-default-indent-width
                 indent-tabs-mode nil
-                line-spacing 1
+                line-spacing 0 ;; I use a patched font (line-height).
                 fill-column 80
-                x-stretch-cursor nil
+                x-stretch-cursor t
                 visible-cursor nil
                 highlight-nonselected-windows nil
                 bidi-display-reordering nil

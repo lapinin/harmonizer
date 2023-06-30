@@ -6,9 +6,8 @@
 (setq user-full-name ""
       user-mail-address "")
 
-;; Set default browser
-;; (setq browse-url-browser-function 'browse-url-generic
-;;       browse-url-generic-program "chromium")
+(setq custom-file (concat home-directory "/.config/emacs/popn/popn-custom.el"))
+;; (setq custom-theme-directory (concat home-directory "./config/emacs/oxocarbon-dark/"))
 
 (provide 'popn-env)
 

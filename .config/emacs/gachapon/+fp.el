@@ -14,9 +14,8 @@
 
 ;; PURS
 (elpaca-leaf (purescript-mode :host github
-                              :repo "purescript-emacs/purescript-mode")
-  :mode (("\\.purs\\'" . purescript-mode)))
-
+                           :repo "purescript-emacs/purescript-mode")
+                           :mode (("\\.purs\\'" . purescript-mode)))
 ;; NIX
 (elpaca-leaf nix-mode
   :mode "\\.nix\\'")

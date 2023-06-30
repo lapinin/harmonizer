@@ -10,17 +10,13 @@
 (popn! +modal
        +completions
        +dired
-       +ibuffer
        +docs
        +sexpr
        +www
        +fp
        +metal
-       ;; +provers
-       +awm)
-
-(custom-set-variables
- '(package-selected-packages '(paren cl-lib hydra leaf-keywords leaf)))
+       +provers
+       +status)
 
 ;; End:
 

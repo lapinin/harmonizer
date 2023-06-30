@@ -61,7 +61,6 @@
   :hook (org-mode . global-org-modern-mode))
 
 ;; LATEX
-;; TODO ... pending setup
 (elpaca-leaf auctex)
 
 (provide '+docs)

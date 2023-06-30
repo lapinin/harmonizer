@@ -6,46 +6,50 @@
 (require 'popn-settings)
 (require 'popn-core)
 
-(defcustom popn-font-size 14
+(defcustom popn-font-size 12
   "Default value for the font size in pt units."
   :group 'popn
   :type 'integer)
 
-(defcustom popn-font "Triplicate T4c"
+(defcustom popn-font "monospace"
   "Default font."
   :group 'popn
   :type 'string)
 
-(defcustom popn-font-unicode "JuliaMono"
+(defcustom popn-font-unicode nil
   "Default unicode font."
   :group 'popn
   :type 'string)
 
-(defcustom popn-variable-pitch-font "Equity Text A"
+(defcustom popn-variable-pitch-font nil
   "Default variable pitch font."
   :group 'popn
   :type 'string)
 
-(defcustom popn-chinese-font "Source Han Serif SC VF"
+(defcustom popn-chinese-font nil
   "Default font for Chinese glyphs."
   :group 'popn
   :type 'string)
 
-(defcustom popn-japanese-font "Source Han Serif JP VF"
+(defcustom popn-japanese-font nil
   "Default font for Japanese glyphs." 
  :group 'popn
   :type 'string)
 
-(defcustom popn-korean-font "Source Han Serif KR VF"
+(defcustom popn-korean-font nil
   "Default font for Korean glyphs."
   :group 'popn
   :type 'string)
 
 (setq
-  popn-font-size 16
-  popn-font "Fairfax"
-  popn-font-unicode "Fairfax")
-  
+ popn-font-size 10
+ popn-font "Martian Mono Cn Md 1.4"
+ popn-font-unicode "JuliaMono"
+ popn-variable-pitch-font "IBM Plex Sans"
+ popn-chinese-font "Source Han Serif CN"
+ popn-japanese-font "IBM Plex Sans JP"
+ popn-korean-font "IBM Plex Sans KR")
+
 (defun what-faces? (pos)
   "Get the font faces at POS."
   (interactive "d")
@@ -73,7 +77,7 @@
 
 (set-face-attribute 'variable-pitch-text nil
                     :family popn-variable-pitch-font
-                    :height 120)
+                    :height 140)
 
 (when (fboundp #'set-fontset-font)
   (set-fontset-font t 'unicode
@@ -85,7 +89,7 @@
   (set-fontset-font t 'kana
                     (font-spec :family popn-japanese-font))
   (set-fontset-font t 'hangul
-                    (font-spec :family popn-korean-font))
+                    (font-spec :family popn-korean-font :height 120))
   (set-fontset-font t 'cjk-misc
                     (font-spec :family popn-japanese-font)))
 
@@ -98,52 +102,42 @@
 (set-display-table-slot standard-display-table 'wrap
                          (make-glyph-code ?↩ 'fallback))
 
-;; Theme.
-(elpaca-leaf stimmung-themes
-  :ensure t
-  :config (stimmung-themes-load-light))
+;; Theming.
 
-(elpaca-leaf circadian
-  :ensure t
+(elpaca-leaf autothemer
+  :ensure t)
+
+(setq custom-safe-themes t)
+(setq custom--inhibit-theme-enable nil)
+(leaf oxocarbon-theme
   :config
-  (setq circadian-themes '(("6:00" . stimmung-themes-light)
-                           ("17:30" . stimmung-themes-dark)))
-  (circadian-setup))
+  (require 'autothemer)
+  (require 'dash)
+  (load-theme 'oxocarbon t))
 
-(elpaca-leaf aas)
-(elpaca-leaf laas)
-(elpaca-leaf engrave-faces)
-(elpaca-leaf info-colors)
-
-(elpaca-leaf dimmer
+(elpaca-leaf rainbow-delimiters
   :require t
   :config
-  (setq dimmer-fraction 0.8
-        dimmer-adjustment-mode :foreground
-        dimmer-use-colorspace :rgb
-        dimmer-watch-frame-focus-events nil)
-  (dimmer-configure-which-key)
-  (dimmer-configure-magit)
-  (dimmer-configure-posframe)
-  (dimmer-mode))
+  (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+  (add-hook 'clojure-mode-hook #'rainbow-delimiters-mode)
+  (add-hook 'emacs-mode-hook #'rainbow-delimiters-mode)
+  (add-hook 'lisp-mode-hook #'rainbow-delimiters-mode)
+  (add-hook 'fennel-mode-hook #'rainbow-delimiters-mode))
 
-(elpaca-leaf focus
+(elpaca-leaf highlight-numbers
   :require t
   :config
-  (focus-mode))
-
-  ;; :config
-  ;; ;; add whatever lsp servers you use to this list
-  ;; (add-list-to-list 'focus-mode-to-thing
-  ;;                   '((lua-mode . lsp-folding-range)
-  ;;                     (rust-mode . lsp-folding-range)
-  ;;                     (latex-mode . lsp-folding-range)
-  ;;                     (python-mode . lsp-folding-range))))
+  (setq highlight-numbers-generic-regexp "\\_<[[:digit:]]+\\(?:\\.[0-9]*\\)?\\_>")
+  (add-hook 'prog-mode-hook #'highlight-numbers-mode)
+  (add-hook 'clojure-mode-hook #'highlight-numbers-mode)
+  (add-hook 'emacs-mode-hook #'highlight-numbers-mode)
+  (add-hook 'lisp-mode-hook #'highlight-numbers-mode)
+  (add-hook 'fennel-mode-hook #'highlight-numbers-mode))
 
 (elpaca-leaf doom-modeline
   :require t
   :config
-  (setq doom-modeline-height 14)
+  (setq doom-modeline-height 40)
   (setq doom-modeline-buffer-file-name-style 'relative-from-project)
   (setq doom-modeline-minor-modes nil)
   (setq doom-modeline-major-mode-icon nil)
@@ -153,19 +147,10 @@
   (setq doom-modeline-modal nil)
   (doom-modeline-mode))
 
-(elpaca-leaf (screenshot :host github
-                         :repo "tecosaur/screenshot"))
-
 (elpaca-leaf (ws-butler :host github
                         :repo "hlissner/ws-butler")
   :config
   (setq ws-butler-keep-whitespace-before-point nil))
-
-(elpaca-leaf rainbow-delimiters
-  :hook prog-mode rainbow-delimiters-mode)
-
-(elpaca-leaf (zen-mode :host github
-                       :repo "aki237/zen-mode"))
 
 (leaf paren
   :ensure t
@@ -174,10 +159,10 @@
   (setq show-paren-when-point-inside-paren t)
   (setq show-paren-when-point-in-periphery t))
 
-(elpaca-leaf goggles
-  :hook ((prog-mode text-mode) . goggles-mode)
-  :config
-  (setq-default goggles-pulse t))
+(elpaca-leaf (ct.el :host github
+                    :repo "neeasade/ct.el"))
+
+(elpaca-leaf focus)
 
 (provide 'popn-face)
 

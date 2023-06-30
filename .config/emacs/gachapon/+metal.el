@@ -12,6 +12,10 @@
   :diminish
   :hook c++-mode modern-c++-font-lock-mode)
 
+(elpaca-leaf (disaster
+              :host github
+              :repo "jart/disaster")) 
+
 (provide '+metal)
 
 ;; End:

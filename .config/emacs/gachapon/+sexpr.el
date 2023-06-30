@@ -2,6 +2,7 @@
 
 ;; CL
 (add-to-list 'exec-path "/usr/local/bin")
+(setq inferior-lisp-program "sbcl")
 
 (leaf lisp-mode
   :mode "\\.eclrc$"
@@ -84,7 +85,6 @@
           minor-mode-overriding-map-alist))
   (add-hook 'sly-db-mode-hook 'popn/sly-db-mode-hook))
 
-
 ;; CLJ
 (elpaca-leaf flycheck-clj-kondo)
 
@@ -104,7 +104,6 @@
   (setq cider-show-error-buffer nil)                ; When there's a cider error, show its buffer and switch to it
   (setq cider-repl-display-help-banner nil))        ; Help banner 
 
-;; Tiny helpers
 (defun cider-start-http-server ()
   (interactive)
   (cider-load-current-buffer)
@@ -126,7 +125,6 @@
 (add-to-list 'auto-mode-alist '("\\.boot$" . clojure-mode))
 (add-to-list 'auto-mode-alist '("\\.cljs.*$" . clojure-mode))
 (add-to-list 'auto-mode-alist '("lein-env" . enh-ruby-mode))
-;; (add-to-list 'auto-mode-alist '("\\.yuck$" . clojure-mode))
 
 ;; ELISP
 (elpaca-leaf fn)      ; function
@@ -148,7 +146,11 @@
   (setq lua-indent-level 2)
   :hook lua-mode-hook antifennel-mode)
 
-(elpaca-leaf fennel-mode)
+(elpaca-leaf fennel-mode
+  :hook fennel-mode-hook fennel-proto-repl-minor-mode) ;; https://andreyor.st/posts/2023-04-08-new-fennel-proto-repl-and-call-for-testing/
+
+;; HY
+(elpaca-leaf hy-mode)
 
 (provide '+sexpr)
 

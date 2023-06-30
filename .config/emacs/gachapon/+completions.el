@@ -1,5 +1,7 @@
 ;;; -*- lexical-binding: t; -*-
 
+(require 'popn-core)
+
 (elpaca-leaf vertico
   :config
   (vertico-mode)
@@ -13,7 +15,7 @@
               (setq cand (funcall orig cand prefix suffix index _start))
               (concat
                (if (= vertico--index index)
-                   (propertize "↱ " 'face 'vertico-current)
+                   (propertize " >> " 'face 'vertico-current)
                  "  ")
                cand)))
 
@@ -47,25 +49,12 @@
   (setq ispell-silently-savep t))
 
 (elpaca-leaf magit)
+
 (elpaca-leaf yasnippet
   :config
   (yas-global-mode 1))
 
 (elpaca-leaf markdown-mode)
-
-(elpaca-leaf (lsp-bridge
-              :host github
-              :repo "manateelazycat/lsp-bridge"
-              :files (:defaults "lsp_bridge.py" "acm/*" "core/*" "langserver/*" "multiserver/*" "resources/*"))
-  :require t
-  :hook (window-setup-hook . global-lsp-bridge-mode)
-  :custom
-  (lsp-bridge-enable-hover-diagnostic . t)
-  (lsp-bridge-signature-show-function . 'lsp-bridge-signature-show-with-frame)
-  (acm-enable-icon . t)  
-  :custom-face
-  (lsp-bridge-alive-mode-line . '((t (:inherit doom-modeline-lsp-running :family "Fairfax"))))
-  (lsp-bridge-kill-mode-line . '((t (:inherit doom-modeline-lsp-error :family "Fairfax")))))
 
 (provide '+completions)
 

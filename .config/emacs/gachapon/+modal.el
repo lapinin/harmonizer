@@ -1,18 +1,5 @@
 ;;; -*- lexical-binding: t; -*-
 
-;; WIP: Get this in meow.
-(leaf windmove
-  :require t)
-
-(defun ignore-error-wrapper (fn)
-  "Funtion return new function that ignore errors.
-   The function wraps a function with `ignore-errors' macro."
-  (lexical-let ((fn fn))
-    (lambda ()
-      (interactive)
-      (ignore-errors
-        (funcall fn)))))
-
 (defun meow-setup ()
   (setq meow-cheatsheet-layout meow-cheatsheet-layout-qwerty)
   (meow-motion-overwrite-define-key
@@ -32,11 +19,7 @@
    '("9" . meow-digit-argument)
    '("0" . meow-digit-argument)
    '("/" . meow-keypad-describe-key)
-   '("?" . meow-cheatsheet)
-   '("k" . (ignore-error-wrapper windmove-up))
-   '("j" . (ignore-error-wrapper windmove-down))
-   '("l" . (ignore-error-wrapper windmove-left))
-   '("h" . (ignore-error-wrapper windmove-right)))
+   '("?" . meow-cheatsheet))
   (meow-normal-define-key
    '("0" . meow-expand-0)
    '("9" . meow-expand-9)
