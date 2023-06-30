@@ -18,4 +18,3 @@ fennel.path = fennel.path .. ";" .. configDir .. "?.fnl;" .. configDir .. "fnl/?
 table.insert(package.loaders or package.searchers, fennel.searcher)
 debug.traceback = fennel.traceback
 require("harmonizer")
-

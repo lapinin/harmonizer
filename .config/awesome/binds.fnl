@@ -63,15 +63,6 @@
     (awful.tag [ "1" "2" "3" "4"] screen
       (. awful.layout.layouts 1))
   (set screen.mypromptbox (awful.widget.prompt)) ;; Create a promptbox for each screen.
-  ;; Create an imagebox widget which will contain an icon indicating which layout we're using.
-  ;; We need one layoutbox per screen.
-  (set screen.mylayoutbox
-       (awful.widget.layoutbox
-         {:screen screen
-          :buttons [ (btn 1 (fn [] (awful.layout.inc  1)))
-                     (btn 3 (fn [] (awful.layout.inc -1)))
-                     (btn 4 (fn [] (awful.layout.inc -1)))
-                     (btn 5 (fn [] (awful.layout.inc  1))) ]}))
   ;; Create a taglist widget.
   (set screen.mytaglist
        (awful.widget.taglist
@@ -107,9 +98,7 @@
                        3 screen.mypromptbox}
                     2 screen.mytasklist
                     3 {:layout wibox.layout.fixed.horizontal
-                       1 (wibox.widget.systray)
-                       2 screen.mylayoutbox}}}))))
-
+                       1 (wibox.widget.systray)}}}))))
 
 ;; Mouse bindings.
 (awful.mouse.append_global_mousebindings

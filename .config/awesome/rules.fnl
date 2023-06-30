@@ -1,6 +1,6 @@
 ;;;; rules.fnl
 
-(import-macros {: btn} :fnl.prelude.macros)
+(import-macros {: btn } :fnl.prelude.macros)
 
 (local awful (require "awful"))
 (local wibox (require "wibox"))
@@ -13,14 +13,14 @@
 (ruled.client.connect_signal "request::rules"
   (fn []
     (ruled.client.append_rule
-      {:id "global"
+      {:id "global" ;; All clients will match this rule.
        :rule {}
        :properties {:raise true
                     :focus awful.client.focus.filter
                     :screen awful.screen.preferred
                     :placement (+ awful.placement.no_overlap
-                                  awful.placement.no_offscreen)}}) ;; All clients will match this rule.
-    (ruled.client.append_rule
+                                  awful.placement.no_offscreen)}})    
+    (ruled.client.append_rule  
       {:id :floating
            :properties {:floating true}
            :rule_any {:class [ :Arandr
@@ -30,17 +30,17 @@
                       :role [ :AlarmWindow
                               :ConfigManager
                               :pop-up ]}})  ;; Floating clients.
-     (ruled.client.append_rule {:id :titlebars
+     (ruled.client.append_rule {:id :titlebars    ;; Add titlebars to normal clients and dialogs.
                                       :properties {:titlebars_enabled true}
-                                      :rule_any {:type [:normal :dialog]}})))   ;; Add titlebars to normal clients and dialogs. 
+                                      :rule_any {:type [:normal :dialog]}}))) 
 
 ;; Titlebars
 
 ;; Add a titlebar if titlebars_enabled is set to true in the rules.
 (client.connect_signal "request::titlebars"
-  (fn [c]
+  (fn [c] ;; Buttons for the titlebar.
     (let [buttons [ (btn 1 (fn [] (c:activate {:action "mouse_move" :context "titlebar"})))
-                    (btn 3 (fn [] (c:activate {:action "mouse_resize" :context "titlebar"})))] ] ;; Buttons for the titlebar.
+                    (btn 3 (fn [] (c:activate {:action "mouse_resize" :context "titlebar"})))] ]
       (tset (awful.titlebar c) :widget
        {1 {1 {1 {:halign "center" ;; Title.
                  :widget (awful.titlebar.widget.titlewidget c)}

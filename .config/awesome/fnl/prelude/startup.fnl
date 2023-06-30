@@ -7,8 +7,7 @@
 (naughty.connect_signal
  "request::display_error"
  (fn [message startup]
-   {:fnl/docstring "Checks when awesome finds an error at startup (fallback config)"
-    :fnl/arglist [message startup]}
+   "Checks when awesome finds an error at startup (fallback config)"
    (naughty.notification
     {: message
      :urgency "critical"

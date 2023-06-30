@@ -8,13 +8,6 @@
       (tset out idx (func value)))
     out))
 
-;; TODO
-;; (fn client-rule! [...]
-;;   (let [rules ...]
-;;     `(ruled.client.connect_signal "request::rules"
-;;       ,(map (fn [ruled]
-;;               `(ruled.client.append_rule ...))))))
-
 (fn btn [arg1 arg2 arg3]
   "Macro for awful.button handling."
   (if (= arg3 nil)
