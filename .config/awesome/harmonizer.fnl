@@ -1,11 +1,28 @@
 ;;;; harmonizer.fnl
 
+(comment
+  Here the awesomewm files start.
+  Very messy and all but ehh don't mind it much.)
+
+;; Standard awesomewm libs.
 (local gears (require "gears"))
 (local beautiful (require "beautiful"))
-(local startup (require "fnl.prelude.startup"))
-(local theme-dir (.. (os.getenv "HOME")
-                     "./config/awesome/themes"))
-(local theme-name "oxocarbon")
-(local theme (require (.. "themes." theme-name ".theme"))) (beautiful.init theme)
+
+;; Theming.
+(local theme-dir (.. (os.getenv "HOME") "./config/awesome/themes"))
+(local theme-name "ildaite")
+(local theme (require (.. "themes." theme-name ".theme")))
+(beautiful.init theme)
+
+;; Signals.
+(local startup (require "signals.startup"))
+(local tags (require "signals.tags"))
+(local notifications (require "signals.notifications"))
+;;(local titlebars (require "signals.titlebars"))
+(local rules (require "signals.rules"))
+
+;; Mouse/Keys bindings.
 (local binds (require "binds"))
-(local rules (require "rules")) 
+
+;; Widgets
+(local bar (require "widgets.bar"))

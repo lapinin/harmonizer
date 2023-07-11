@@ -1,8 +1,7 @@
 ;;;; macros.fnl
 
 (fn map [func coll]
-  {:fnl/docstring "Maps a function over a collection."
-   :fnl/arglist [func coll]}
+  "Maps a function over a 'collection'."
   (let [out {}]
     (each [idx value (ipairs coll)]
       (tset out idx (func value)))

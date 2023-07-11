@@ -1,7 +1,6 @@
 ;;;; startup.fnl
 
 (local naughty (require "naughty"))
-(local startup {})
 
 ;; Error handling.
 (naughty.connect_signal
@@ -15,5 +14,3 @@
                 (or (and startup
                          " during startup!")
                     "!"))})))
-
-startup
