@@ -1,0 +1,3 @@
+xrandr --output eDP-1 --off --output HDMI-1 --mode 1920x1080 --rate 75.00
+xset m 0 0
+exec awesome
