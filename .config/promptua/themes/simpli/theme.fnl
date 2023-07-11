@@ -25,7 +25,7 @@
  {:provider :git.dirty
   :style "bold white"}
  {:provider :command.execTime
-  :style "bold cyan"}
+  :style "blue "}
  {:separator "\n"} 
  {:provider (fn [] (- (+ (os.getenv :SHLVL) 1) promptua.config.dollar.shlvl))
   :condition (fn [] (> (- (os.getenv :SHLVL) promptua.config.dollar.shlvl) 0))
